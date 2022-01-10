@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Color picker Online</title>
+    <meta name='description' content='This is an online color picker'> 
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+        <style>
+        body {
+        font-family: sans-serif;
+        margin-top: 50px;
+        }
+
+        #wrapper{
+            background-color: white;
+            color: #333;
+            border-radius: 25px;
+            padding: 5px 25px;
+            width: 300px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+        font-size: 3rem;
+        color: black;
+        text-align: center;
+        }
+
+        input[type="color"] {
+            background-color: #fff;
+            padding: 10px;
+            width: 200px;
+            height: 30px;
+            cursor: pointer;
+            border: 2px solid #000;
+            border-radius: 3px;
+            margin-top: 10px;
+        }
+
+        b {
+        background-color: #fff;
+        padding: 16px;
+        font-family: sans-serif;
+        }
+
+        code {
+            font-size: 1.2rem;
+        }
+
+        .flex{
+            display: flex;
+            align-items: center;
+        }
+
+        #copybtn:hover{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- This is a fork from ho-ng-ni codepen -->
+    <div id="wrapper">
+    <h1>Color Picker</h1>
+    <label for="colorPicker">Choose a color:</label>
+    <input type="color" value="#ffffff" id="colorPicker">
+
+    
+     <p class='flex'>
+        Current color code:  &nbsp;
+        <code id="colorCode"></code> &nbsp;
+        <div id="copybtn" class="flex" onclick="copyColor();">
+        <svg  xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+        <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+        </svg>
+        Copy
+        </div>
+    </p>
+    </div>
+
+    <script>
+        const body = document.querySelector("body");
+        const input = document.getElementById("colorPicker");
+        const colorCode = document.getElementById("colorCode");
+
+        setColor();
+        input.addEventListener("input", setColor);
+
+        function setColor() {
+            body.style.backgroundColor = input.value;
+            colorCode.innerHTML = input.value;
+        }
+
+        function copyColor(){
+            let sampleTextarea = document.createElement("textarea");
+            document.body.appendChild(sampleTextarea);
+            sampleTextarea.value = input.value;
+            sampleTextarea.select(); 
+            document.execCommand("copy");
+            document.body.removeChild(sampleTextarea);
+        }
+    </script>
+</body>
+</html>
